@@ -2,3 +2,227 @@ html {
   height: 100%;
   width: 100%;
 }
+:root{
+  --border-color:#c4b6b6 ;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  height: 10%;
+  border-bottom: solid 1px #d2d9df ;
+}
+
+.heading{
+  margin: 15px 10px;
+}
+
+.user{
+  display: flex;
+  align-items: center;
+}
+
+.user__avatar{
+  padding: 10px 14px;
+  border-radius: 50%;
+  background-color: #e2e7ec;
+  color: #9cabb9;
+}
+
+.user__name{
+  padding: 10px;
+  font-weight: 600;
+}
+
+/* Main */
+main{
+  background-color: #f7f8f9;
+  height: 647px;
+  position: relative;
+}
+
+/* Search container */
+.search-container{
+  padding: 20px 0;
+  text-align: right;
+}
+
+.search-container__input{
+  font-size: 16px;
+  padding: 6px 10px;
+  width: 250px;
+  border-radius: 4px;
+  border-color: var(--border-color);
+}
+
+.btn{
+  font-size: 16px;
+  padding: 10px 14px;
+  background-color: #d2455a;
+  border-radius: 2px;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+}
+
+.btn:hover{
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.search-container__add-book-btn{
+  margin: 0 10px;
+}
+
+/* Table */
+
+table, th, td {
+  border: 2px solid var(--border-color);
+  border-collapse: collapse;
+}
+
+table{
+  width: 100%;
+  padding: 0 10px;
+}
+
+th{
+  text-align: left;
+}
+
+th, td{
+  padding: 6px 10px;
+  color: #333;
+}
+
+.action-data{
+  color: #d2455a ;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+/* Modal */
+
+.modal{
+  position: absolute;
+  background-color: #fff;
+  border: solid 1px var(--border-color);
+} 
+
+
+
+/* Modal delete book */
+.modal__delete-book{
+  top: 50%;
+  left: 20%;
+  width: 320px;
+  height: 210px;
+  text-align: center;
+  display: none;
+}
+
+.modal__delete-book.open{
+  display: block;
+}
+
+.close-btn{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+}
+
+.delete-book__heading{
+  font-size: 20px;
+}
+
+.delete-book__re-check span{
+  font-weight: 600;
+}
+
+.delete-book__action{
+  margin-top: 40px;
+}
+
+.delete-book__action-delete{
+  background-color: #fff;
+  color: #000;
+}
+
+.delete-book__action-cancel.btn,
+.delete-book__action-delete.btn{
+  padding: 12px 35px;
+}
+
+/* Modal add book */
+.modal__add-book{
+  top: 36%;
+  right: 20%;
+  width: 350px;
+  height: 380px;
+  display: none;
+}
+
+.modal__add-book.open{
+  display: block;
+}
+
+.add-book__header{
+  margin: 12px 0 24px 10px;
+}
+
+.add-book__heading{
+  font-size: 20px;
+  margin-left: 8px;
+}
+
+.form-group{
+  margin-top: 16px;
+}
+
+.form-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 12px;
+  color: #4f5e6e;
+}
+
+.form-control {
+  width: 90%;
+  margin: 0 10px 0 12px;
+  padding-left: 10px;
+  border-radius: 3px;
+  font-size: 18px;
+  border-color: var(--border-color);
+  height: 36px;
+  
+}
+
+.add-book__select-topic{
+  width: 94%;
+  height: 40px;
+  margin: 0 10px 0 12px;
+  font-size: 18px;
+  padding: 6px ;
+  padding-right: 10px;
+  border-color: var(--border-color);
+  border-radius: 3px;
+}
+
+.add-book__create-btn{
+  padding: 12px 35px;
+  position: absolute;
+  right: 10px;
+  bottom: 7%;
+}
+
