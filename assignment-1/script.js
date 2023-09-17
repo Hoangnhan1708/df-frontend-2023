@@ -1,5 +1,5 @@
 // Your JS code goes here
-// Your JS code goes here
+
 
 const $ =document.querySelector.bind(document);
 const $$ =document.querySelectorAll.bind(document);
@@ -17,9 +17,23 @@ var indexDelete;
 
 const table = $('.table');
 
-var nameArray =['Refactoring', 'Designing Data-Intensive Application','The Phoenix Project'];
-var authorArray = ['Martin Fowler','Martin Kleppman','Gene Kim'];
-var topicArray = ['Programming','Database','DevOps'];
+var books = [
+    {
+        name : 'Refactoring',
+        author :'Martin Fowler',
+        topic : 'Programming'
+    },
+    {
+        name : 'Designing Data-Intensive Application',
+        author :'Martin Kleppman',
+        topic : 'Database'
+    },{
+        name : 'The Phoenix Project',
+        author :'Gene Kim',
+        topic : 'DevOps'
+    },
+]
+
 
 
 
@@ -33,15 +47,15 @@ searchInput.oninput =function(event){
             <th class="action-heading heading">Action</th>
         </tr>
         `
-        for(var i = 0;i< nameArray.length ; i++){
-            var name = nameArray[i].toLowerCase();
+        for(var i = 0;i< books.length ; i++){
+            var name = books[i].name.toLowerCase();
             
             if(name.includes(event.target.value.toLowerCase())){
                 table.innerHTML = table.innerHTML + `
                 <tr data-index ='${i}'>
-                    <td class="name-data">${nameArray[i]}</td>
-                    <td class="author-data">${authorArray[i]}</td>
-                    <td class="topic-data">${topicArray[i]}</td>
+                    <td class="name-data">${books[i].name}</td>
+                    <td class="author-data">${books[i].author}</td>
+                    <td class="topic-data">${books[i].topic}</td>
                     <td class="action-data js-action-data" data-index ="${i}">Delete</td>
                 </tr>
             `
@@ -49,6 +63,7 @@ searchInput.oninput =function(event){
             }
             
         }
+        console.log(event.target.value);
     
     }
     else{
@@ -76,17 +91,17 @@ function submitForm(event){
     var authorName = $('#author-name').value;
     var topicName = $('#topic-name').value;
 
-    nameArray.push(bookName);
-    authorArray.push(authorName);
-    topicArray.push(topicName);
+
+    books.push({name : bookName ,author : authorName , topic :topicName});
+
     
-    localStorage.setItem('list-book-name', JSON.stringify(nameArray));
-    localStorage.setItem('list-author-name', JSON.stringify(authorArray));
-    localStorage.setItem('list-topic-name', JSON.stringify(topicArray));
+    localStorage.setItem('list-book', JSON.stringify(books));
     
-    nameArray = JSON.parse(localStorage.getItem('list-book-name'));
-    authorArray = JSON.parse(localStorage.getItem('list-author-name'));
-    topicArray = JSON.parse(localStorage.getItem('list-topic-name'));
+
+    
+    books = JSON.parse(localStorage.getItem('list-book'));
+    
+
 
     addModal.classList.remove('open');
     
@@ -94,10 +109,8 @@ function submitForm(event){
 }
 
 function render(){
-    if(JSON.parse(localStorage.getItem('list-book-name'))){
-        nameArray = JSON.parse(localStorage.getItem('list-book-name'));
-        authorArray = JSON.parse(localStorage.getItem('list-author-name'));
-        topicArray = JSON.parse(localStorage.getItem('list-topic-name'));
+    if(JSON.parse(localStorage.getItem('list-book'))){
+        books = JSON.parse(localStorage.getItem('list-book'));
     }
     table.innerHTML = `
     <tr class="table__heading">
@@ -108,12 +121,12 @@ function render(){
     </tr>
     `
     
-    for(var i =0; i < nameArray.length ; i++){
+    for(var i =0; i < books.length ; i++){
         table.innerHTML = table.innerHTML + `
             <tr data-index ='${i}'>
-                <td class="name-data">${nameArray[i]}</td>
-                <td class="author-data">${authorArray[i]}</td>
-                <td class="topic-data">${topicArray[i]}</td>
+                <td class="name-data">${books[i].name}</td>
+                <td class="author-data">${books[i].author}</td>
+                <td class="topic-data">${books[i].topic}</td>
                 <td class="action-data js-action-data" data-index ="${i}">Delete</td>
             </tr>
         `
@@ -135,17 +148,13 @@ function handleDelete(){
     const confirmCancelBtn = $('.delete-book__action-cancel');
 
     confirmDeleteBtn.onclick = function(){
-        nameArray.splice(indexDelete,1);
-        authorArray.splice(indexDelete,1);
-        topicArray.splice(indexDelete,1);
+        books.splice(indexDelete,1);
 
-        localStorage.setItem('list-book-name', JSON.stringify(nameArray));
-        localStorage.setItem('list-author-name', JSON.stringify(authorArray));
-        localStorage.setItem('list-topic-name', JSON.stringify(topicArray));
+        localStorage.setItem('list-book', JSON.stringify(books));
         
-        nameArray = JSON.parse(localStorage.getItem('list-book-name'));
-        authorArray = JSON.parse(localStorage.getItem('list-author-name'));
-        topicArray = JSON.parse(localStorage.getItem('list-topic-name'));
+
+        
+        books = JSON.parse(localStorage.getItem('list-book'));
 
         deleteModal.classList.remove('open');
     
